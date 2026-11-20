@@ -10,4 +10,4 @@ Claude (chat de Anthropic)
 - Explicaciones y comandos de instalación y configuración (los ejecuté yo).
 
 ## Qué escribí, modifiqué o corregí yo
-- (se va completando a medida que avanzo)
+- Agregué `countriesUrl` en `environment.ts` y `environment.prod.ts` (la explicación de qué es environments fue de Claude, el código lo escribí yo).
