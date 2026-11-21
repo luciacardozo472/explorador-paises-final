@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Countries } from '../services/countries';
 
 @Component({
   selector: 'app-tab2',
@@ -6,8 +7,47 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss'],
   standalone: false,
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
+  countries: any[] = [];
+  regiones: string[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+  regionSeleccionada = 'Africa';
+  paisesDeRegion: any[] = [];
+  cargando = true;
+  error = false;
 
-  constructor() {}
+  constructor(
+    private countriesService: Countries,
+    private cdr: ChangeDetectorRef
+  ) {}
 
+  ngOnInit() {
+    this.countriesService.getCountries().subscribe({
+      next: (data) => {
+        this.countries = data;
+        this.filtrarRegion();
+        this.cargando = false;
+        this.cdr.markForCheck();
+      },
+      error: () => {
+        this.error = true;
+        this.cargando = false;
+        this.cdr.markForCheck();
+      },
+    });
+  }
+
+  cambiarRegion(event: any) {
+    this.regionSeleccionada = event.detail.value;
+    this.filtrarRegion();
+  }
+
+  filtrarRegion() {
+    this.paisesDeRegion = this.countries.filter(
+      (pais) => pais.region === this.regionSeleccionada
+    );
+  }
+
+  contarPaises(region: string): number {
+    return this.countries.filter((pais) => pais.region === region).length;
+  }
 }

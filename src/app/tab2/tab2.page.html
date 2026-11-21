@@ -1,17 +1,53 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-title>Regiones</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [scrollable]="true" [value]="regionSeleccionada" (ionChange)="cambiarRegion($event)">
+      <ion-segment-button value="Africa">
+        <ion-label>África</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Americas">
+        <ion-label>América</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Asia">
+        <ion-label>Asia</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Europe">
+        <ion-label>Europa</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Oceania">
+        <ion-label>Oceanía</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div *ngIf="cargando" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-item *ngIf="error" color="danger">
+    <ion-label>No se pudieron cargar los países. Intentá de nuevo.</ion-label>
+  </ion-item>
+
+  <ng-container *ngIf="!cargando && !error">
+    <ion-item lines="none">
+      <ion-label>Países en esta región</ion-label>
+      <ion-badge slot="end">{{ contarPaises(regionSeleccionada) }}</ion-badge>
+    </ion-item>
+
+    <ion-list>
+      <ion-item *ngFor="let pais of paisesDeRegion">
+        <ion-avatar slot="start">
+          <img [src]="'https://flagcdn.com/w80/' + pais.cca2.toLowerCase() + '.png'" [alt]="pais.name.common" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ pais.name.common }}</h2>
+          <p>{{ pais.capital?.[0] }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
 </ion-content>

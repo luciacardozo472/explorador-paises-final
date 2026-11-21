@@ -13,6 +13,7 @@ Claude (chat de Anthropic)
 - Código de `tab1.page.ts` y `tab1.page.html` (lista de países con spinner y mensaje de error). Claude me lo dio y yo lo tipeé.
 - Claude me explicó que la pantalla no se actualizaba porque Angular 21+ trabaja sin Zone.js, y me indicó agregar `ChangeDetectorRef` con `markForCheck()`.
 - Claude me indicó quitar `[fullscreen]="true"` y `[translucent]="true"` para que no se tapara la barra de desplazamiento.
+- Código de la pestaña Regiones (`tab2.page.ts` y `tab2.page.html`): `ion-segment` para elegir la región, `ion-badge` con el contador y la lista filtrada. Claude me lo dio y yo lo tipeé.
 
 ## Qué escribí, modifiqué o corregí yo
 - Agregué `countriesUrl` en `environment.ts` y `environment.prod.ts` (la explicación de qué es environments fue de Claude, el código lo escribí yo).
@@ -24,3 +25,4 @@ Claude (chat de Anthropic)
 - Detecté que la lista de países se repetía dos veces y pegué mi archivo para encontrar el error.
 - La idea de agregar un buscador en la pestaña Países fue mía.
 - Detecté que la barra de desplazamiento quedaba tapada por el encabezado y apliqué el arreglo.
+- Probé cada región en la app y comprobé que la lista y el contador cambian correctamente.
