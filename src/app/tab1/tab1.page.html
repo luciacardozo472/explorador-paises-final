@@ -1,17 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Países</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div *ngIf="cargando" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-item *ngIf="error" color="danger">
+    <ion-label>No se pudieron cargar los países. Intentá de nuevo.</ion-label>
+  </ion-item>
+
+  <ion-list *ngIf="!cargando && !error">
+    <ion-item *ngFor="let pais of countries">
+      <ion-label>
+        <h2>{{ pais.flag }} {{ pais.name.common }}</h2>
+        <p>{{ pais.capital?.[0] }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
