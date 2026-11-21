@@ -1,0 +1,152 @@
+:host {
+  --azul: #1976d2;
+  --azul-claro: #e3f0ff;
+  --gris: #6b7280;
+  --gris-claro: #f5f7fa;
+}
+
+.contenido {
+  --background: var(--gris-claro);
+}
+
+/* Encabezado */
+.encabezado {
+  --background: #fff;
+  --padding-top: 12px;
+  --padding-bottom: 8px;
+}
+
+.encabezado-contenido {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.encabezado-icono {
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 14px;
+  color: var(--azul);
+  background: var(--azul-claro);
+}
+
+.encabezado-titulo {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.encabezado-subtitulo {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--gris);
+}
+
+/* Pestañas de continentes */
+.barra-segmento {
+  --background: #fff;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-bottom: 10px;
+}
+
+ion-segment {
+  --background: transparent;
+}
+
+ion-segment-button {
+  --background: #f1f3f5;
+  --background-checked: var(--azul-claro);
+  --color: var(--gris);
+  --color-checked: var(--azul);
+  --indicator-color: transparent;
+  --indicator-box-shadow: none;
+  --border-radius: 20px;
+  min-height: 36px;
+  margin: 0 4px;
+  font-weight: 600;
+  text-transform: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Contador */
+.fila-contador {
+  width: calc(100% - 32px);
+  max-width: 720px;
+  margin: 12px auto 0;
+}
+
+.contador {
+  --background: var(--azul-claro);
+  --color: var(--azul);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Lista de países */
+.lista-paises {
+  width: calc(100% - 32px);
+  max-width: 720px;
+  margin: 12px auto 16px;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.fila-pais {
+  --background: #fff;
+  --border-color: #eef0f3;
+  --min-height: 72px;
+  --padding-start: 16px;
+  --padding-end: 12px;
+  --background-activated: var(--azul-claro);
+  --background-hover: #f7faff;
+  transition: background 0.2s ease;
+  animation: aparecer 0.3s ease;
+}
+
+.fila-pais:last-child {
+  --inner-border-width: 0;
+}
+
+.fila-pais ion-avatar {
+  width: 52px;
+  height: 52px;
+  margin-right: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.fila-pais h2 {
+  margin: 0 0 2px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.fila-pais p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--gris);
+}
+
+.flecha {
+  font-size: 18px;
+  color: #9ca3af;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

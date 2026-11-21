@@ -1,8 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Regiones</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="encabezado">
+    <div class="encabezado-contenido">
+      <ion-icon name="earth-outline" class="encabezado-icono"></ion-icon>
+      <div>
+        <h1 class="encabezado-titulo">Regiones</h1>
+        <p class="encabezado-subtitulo">Explorá el mundo por continentes</p>
+      </div>
+    </div>
   </ion-toolbar>
-  <ion-toolbar>
+  <ion-toolbar class="barra-segmento">
     <ion-segment [scrollable]="true" [value]="regionSeleccionada" (ionChange)="cambiarRegion($event)">
       <ion-segment-button value="Africa">
         <ion-label>África</ion-label>
@@ -23,7 +29,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="contenido">
   <div *ngIf="cargando" class="ion-text-center ion-padding">
     <ion-spinner name="crescent"></ion-spinner>
   </div>
@@ -33,13 +39,12 @@
   </ion-item>
 
   <ng-container *ngIf="!cargando && !error">
-    <ion-item lines="none">
-      <ion-label>Países en esta región</ion-label>
-      <ion-badge slot="end">{{ contarPaises(regionSeleccionada) }}</ion-badge>
-    </ion-item>
+    <div class="fila-contador">
+      <ion-badge class="contador">{{ contarPaises(regionSeleccionada) }} países</ion-badge>
+    </div>
 
-    <ion-list>
-      <ion-item *ngFor="let pais of paisesDeRegion">
+    <ion-list class="lista-paises" lines="full">
+      <ion-item *ngFor="let pais of paisesDeRegion" button detail="false" class="fila-pais" (click)="abrirDetalle(pais)">
         <ion-avatar slot="start">
           <img [src]="'https://flagcdn.com/w80/' + pais.cca2.toLowerCase() + '.png'" [alt]="pais.name.common" />
         </ion-avatar>
@@ -47,7 +52,80 @@
           <h2>{{ pais.name.common }}</h2>
           <p>{{ pais.capital?.[0] }}</p>
         </ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end" class="flecha"></ion-icon>
       </ion-item>
     </ion-list>
   </ng-container>
 </ion-content>
+
+<ion-modal [isOpen]="modalAbierto" (didDismiss)="cerrarDetalle()" [initialBreakpoint]="0.85" [breakpoints]="[0, 0.85, 1]">
+  <ng-template>
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <ion-title>{{ paisSeleccionado?.name.common }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cerrarDetalle()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding" *ngIf="paisSeleccionado">
+      <img
+        [src]="'https://flagcdn.com/w320/' + paisSeleccionado.cca2.toLowerCase() + '.png'"
+        [alt]="paisSeleccionado.name.common"
+        style="display: block; width: 180px; margin: 8px auto 16px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)"
+      />
+
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label>
+            <p>Nombre oficial</p>
+            <h3>{{ paisSeleccionado.name.official }}</h3>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Capital</p>
+            <h3>{{ paisSeleccionado.capital?.[0] || 'Sin datos' }}</h3>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Región</p>
+            <h3>{{ paisSeleccionado.region }} · {{ paisSeleccionado.subregion }}</h3>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Superficie</p>
+            <h3>{{ paisSeleccionado.area | number }} km²</h3>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Idiomas</p>
+            <h3>{{ idiomas(paisSeleccionado) }}</h3>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Monedas</p>
+            <h3>{{ monedas(paisSeleccionado) }}</h3>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Países limítrofes</p>
+            <h3>{{ paisSeleccionado.borders?.length || 0 }}</h3>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            <p>Salida al mar</p>
+            <h3>{{ paisSeleccionado.landlocked ? 'No' : 'Sí' }}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

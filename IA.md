@@ -15,6 +15,7 @@ Claude (chat de Anthropic)
 - Claude me indicó quitar `[fullscreen]="true"` y `[translucent]="true"` para que no se tapara la barra de desplazamiento.
 - Código de la pestaña Regiones (`tab2.page.ts` y `tab2.page.html`): `ion-segment` para elegir la región, `ion-badge` con el contador y la lista filtrada. Claude me lo dio y yo lo tipeé.
 - Claude revisó el archivo de datos y me avisó que no trae población, por eso la comparación usa capital, superficie, idiomas, monedas, países limítrofes y salida al mar.
+- Rediseño visual de la pestaña Regiones: HTML (`tab2.page.html`) y estilos (`tab2.page.scss`) con encabezado, pestañas redondeadas, contador y lista con flechas. Claude me lo dio y yo lo tipeé.
 
 ## Qué escribí, modifiqué o corregí yo
 - Agregué `countriesUrl` en `environment.ts` y `environment.prod.ts` (la explicación de qué es environments fue de Claude, el código lo escribí yo).
@@ -29,3 +30,5 @@ Claude (chat de Anthropic)
 - Probé cada región en la app y comprobé que la lista y el contador cambian correctamente.
 - le pedi a claude que me explique el Código de la pestaña Comparar (`tab3.page.ts` y `tab3.page.html`): y utilice `ion-select` para elegir dos países y `ion-card` para mostrar sus datos.
 - Probé la comparación con distintos pares de países y comprobé que las tarjetas se actualizan.
+- Pegué por error el HTML de Regiones en la pestaña Comparar, vi el error de compilación y lo recuperé con `git restore`.
+- Pedí yo el rediseño y las mejoras de la pantalla Regiones.

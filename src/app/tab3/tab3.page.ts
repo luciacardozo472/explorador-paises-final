@@ -13,6 +13,7 @@ export class Tab3Page implements OnInit {
   codigoB = '';
   cargando = true;
   error = false;
+  
 
   constructor(
     private countriesService: Countries,

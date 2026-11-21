@@ -14,6 +14,8 @@ export class Tab2Page implements OnInit {
   paisesDeRegion: any[] = [];
   cargando = true;
   error = false;
+  paisSeleccionado: any = null;
+  modalAbierto = false;
 
   constructor(
     private countriesService: Countries,
@@ -49,5 +51,24 @@ export class Tab2Page implements OnInit {
 
   contarPaises(region: string): number {
     return this.countries.filter((pais) => pais.region === region).length;
+  }
+
+  abrirDetalle(pais: any) {
+    this.paisSeleccionado = pais;
+    this.modalAbierto = true;
+  }
+
+  cerrarDetalle() {
+    this.modalAbierto = false;
+  }
+
+  idiomas(pais: any): string {
+    return pais.languages ? Object.values(pais.languages).join(', ') : 'Sin datos';
+  }
+
+  monedas(pais: any): string {
+    return pais.currencies
+      ? Object.values(pais.currencies).map((m: any) => m.name).join(', ')
+      : 'Sin datos';
   }
 }
