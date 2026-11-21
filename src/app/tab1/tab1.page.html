@@ -15,8 +15,11 @@
 
   <ion-list *ngIf="!cargando && !error">
     <ion-item *ngFor="let pais of countries">
+      <ion-avatar slot="start">
+        <img [src]="'https://flagcdn.com/w80/' + pais.cca2.toLowerCase() + '.png'" [alt]="pais.name.common" />
+      </ion-avatar>
       <ion-label>
-        <h2>{{ pais.flag }} {{ pais.name.common }}</h2>
+        <h2>{{ pais.name.common }}</h2>
         <p>{{ pais.capital?.[0] }}</p>
       </ion-label>
     </ion-item>
