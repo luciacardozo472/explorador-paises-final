@@ -12,6 +12,7 @@ Claude (chat de Anthropic)
 - Claude detectó que mi proyecto usa Angular 22 y que el servicio generado traía `@Service()`, que no admite inyección por constructor, por eso se cambió a `@Injectable({ providedIn: 'root' })`.
 - Código de `tab1.page.ts` y `tab1.page.html` (lista de países con spinner y mensaje de error). Claude me lo dio y yo lo tipeé.
 - Claude me explicó que la pantalla no se actualizaba porque Angular 21+ trabaja sin Zone.js, y me indicó agregar `ChangeDetectorRef` con `markForCheck()`.
+- Claude me indicó quitar `[fullscreen]="true"` y `[translucent]="true"` para que no se tapara la barra de desplazamiento.
 
 ## Qué escribí, modifiqué o corregí yo
 - Agregué `countriesUrl` en `environment.ts` y `environment.prod.ts` (la explicación de qué es environments fue de Claude, el código lo escribí yo).
@@ -21,4 +22,5 @@ Claude (chat de Anthropic)
 - Corregí el nombre de la pestaña a "Países" (con tilde) en `tabs.page.html`.
 - Código de las banderas con `ion-avatar` en `tab1.page.html` (usa imágenes de flagcdn.com).
 - Detecté que la lista de países se repetía dos veces y pegué mi archivo para encontrar el error.
-
+- La idea de agregar un buscador en la pestaña Países fue mía.
+- Detecté que la barra de desplazamiento quedaba tapada por el encabezado y apliqué el arreglo.

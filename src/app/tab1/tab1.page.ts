@@ -11,6 +11,7 @@ export class Tab1Page implements OnInit {
   countries: any[] = [];
   cargando = true;
   error = false;
+  paisesFiltrados: any[] = [];
 
  constructor(
   private countriesService: Countries,
@@ -21,6 +22,7 @@ export class Tab1Page implements OnInit {
     this.countriesService.getCountries().subscribe({
       next: (data) => {
         this.countries = data;
+        this.paisesFiltrados = data;
         this.cargando = false;
          this.cdr.markForCheck();
       },
@@ -30,5 +32,11 @@ export class Tab1Page implements OnInit {
          this.cdr.markForCheck();
       },
     });
+  }
+   buscar(event: any) {
+    const texto = (event.target.value || '').toLowerCase();
+    this.paisesFiltrados = this.countries.filter((pais) =>
+      pais.name.common.toLowerCase().includes(texto)
+    );
   }
 }

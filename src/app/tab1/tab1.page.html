@@ -2,9 +2,12 @@
   <ion-toolbar>
     <ion-title>Países</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Buscar país" (ionInput)="buscar($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <div *ngIf="cargando" class="ion-text-center ion-padding">
     <ion-spinner name="crescent"></ion-spinner>
   </div>
@@ -14,7 +17,7 @@
   </ion-item>
 
   <ion-list *ngIf="!cargando && !error">
-    <ion-item *ngFor="let pais of countries">
+    <ion-item *ngFor="let pais of paisesFiltrados">
       <ion-avatar slot="start">
         <img [src]="'https://flagcdn.com/w80/' + pais.cca2.toLowerCase() + '.png'" [alt]="pais.name.common" />
       </ion-avatar>
@@ -24,4 +27,8 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-item *ngIf="!cargando && !error && paisesFiltrados.length === 0">
+    <ion-label>No se encontraron países.</ion-label>
+  </ion-item>
 </ion-content>
