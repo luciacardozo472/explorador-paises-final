@@ -14,3 +14,4 @@ Claude (chat de Anthropic)
 ## Qué escribí, modifiqué o corregí yo
 - Agregué `countriesUrl` en `environment.ts` y `environment.prod.ts` (la explicación de qué es environments fue de Claude, el código lo escribí yo).
 - Tipeé el código en mi proyecto, lo guardé y comprobé que compila sin errores.
+- nombre las pestañas (Países, Regiones, Comparar) y puse los íconos (`earth-outline`, `map-outline`, `git-compare-outline`).
